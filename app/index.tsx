@@ -14,24 +14,24 @@ const slides: Slide[] = [
 
 export default function Index() {
     return (
-        <SafeAreaView className="flex-1 bg-primary-10">
+        <SafeAreaView className="flex-1 flex-col bg-primary-10 ">
             {/* 75% height for carousel */}
             <View className="flex-[3] w-full">
                 <Carousel slides={slides} />
             </View>
 
             {/* 25% height for buttons, 32px gap */}
-            <View className="flex-[2] w-full px-6 items-center justify-center">
+            <View className="flex-[1] flex-col justify-start px-6 gap-[32px] mt-2">
                 <Button
                     label="Sign up for free"
                     to="./auth/Sign-up"
-                    className="w-full mb-8 mt-12 rounded-full p-5 font-primary border-2 border-primary-70 bg-primary-70 dark:bg-primary-100"
+                    className="w-full rounded-[20px] p-5 font-primary bg-primary-70 dark:bg-primary-100"
                     textClassName="text-[16px] font-semibold text-primary-10 dark:text-accent-bold text-center"
                 />
                 <Button
                     label="Sign in"
                     to="./auth/Sign-in"
-                    className="w-full rounded-full p-5 font-primary border-2 border-primary-70 bg-primary-10 dark:bg-primary-100"
+                    className="w-full rounded-[20px] p-5 font-primary border-2 border-primary-70 bg-primary-10 dark:bg-primary-100"
                     textClassName="text-[16px] font-semibold text-primary-70 dark:text-accent-bold text-center"
                 />
             </View>

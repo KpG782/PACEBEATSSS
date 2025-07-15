@@ -1,7 +1,11 @@
 // screens/onboarding/Onboarding1.tsx
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native'
 import { useRouter } from 'expo-router'
+
+// getting optionButton width
+const screenWidth = Dimensions.get('window').width;
+const buttonWidth = (screenWidth - (24 * 2 + 12 * 2)) / 2; // container padding + margin
 
 // Progress bar at top
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
@@ -23,8 +27,9 @@ interface OptionButtonProps {
 </View>
 const OptionButton: React.FC<OptionButtonProps> = ({ icon, label, selected, onPress }) => (
     <TouchableOpacity
+        style={{ width: buttonWidth, height: 56, marginHorizontal: 6, marginBottom: 32 }}
         className={
-            `flex-row items-center px-[30px] py-[16px] rounded-[20px] mb-[32px] w-full h-[56px] border-2 ` +
+            `flex-row items-center px-[30px] py-[16px] rounded-[20px] mb-[32px] border-2 ` +
             (selected
                 ? 'bg-primary-70 border-primary-70'
                 : 'bg-white border-primary-30')
@@ -52,44 +57,48 @@ export default function Onboarding1() {
     const [selected, setSelected] = useState<string[]>([])
 
     const options = [
-        { id: 'starting', icon: '🟢', label: 'Just starting' },
-        { id: 'occasionally', icon: '🟡', label: 'Run occasionally' },
-        { id: 'weekly', icon: '🔵', label: 'I run weekly' },
-        { id: 'regularly', icon: '🔴', label: 'I run regularly / train often' },
+        { id: 'a', icon: '🎧', label: 'EDM' },
+        { id: 'b', icon: '🎧', label: 'Jazz' },
+        { id: 'c', icon: '🎧', label: 'K-Pop' },
+        { id: 'd', icon: '🎧', label: 'Rock' },
+        { id: 'e', icon: '🎧', label: 'Hip Hop' },
+        { id: 'f', icon: '🎧', label: 'Rock' },
     ]
 
     const toggle = (id: string) => {
         if (selected.includes(id)) {
             setSelected(selected.filter(item => item !== id))
-        } else if (selected.length < 1) {
+        } else if (selected.length < 8) {
             setSelected([...selected, id])
         }
     }
 
     const handleNext = () => {
-        router.push('../onboarding/Onboarding3')
+        router.push('../onboarding/Onboarding4')
     }
 
     return (
         <View className="flex-1 bg-white pt-[36px] gap-[48px]">
-            <ProgressBar progress={0.5} />
+            <ProgressBar progress={0.75} />
 
             <View className="gap-[8px]">
                 <Text className="text-[24px] font-bold text-primary-dark text-center">
-                    How often do you run?
+                    What genres pump you up?
                 </Text>
             </View>
 
             <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
-                {options.map(opt => (
-                    <OptionButton
-                        key={opt.id}
-                        icon={opt.icon}
-                        label={opt.label}
-                        selected={selected.includes(opt.id)}
-                        onPress={() => toggle(opt.id)}
-                    />
-                ))}
+                <View className="flex-row flex-wrap justify-start px-[6px]">
+                    {options.map(opt => (
+                        <OptionButton
+                            key={opt.id}
+                            icon={opt.icon}
+                            label={opt.label}
+                            selected={selected.includes(opt.id)}
+                            onPress={() => toggle(opt.id)}
+                        />
+                    ))}
+                </View>
             </ScrollView>
 
             <TouchableOpacity
