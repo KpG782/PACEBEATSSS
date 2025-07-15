@@ -5,8 +5,8 @@ import { useRouter } from 'expo-router'
 
 // Progress bar at top
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
-    <View className="h-1 w-full bg-grey-20">
-        <View className="h-full bg-primary-70" style={{ width: `${progress * 100}%` }} />
+    <View className="flex-col h-2 rounded-[8px] w-[340px] self-center bg-[#2d2d2d]">
+        <View className="h-full rounded-[8px] bg-primary-70" style={{ width: `${progress * 100}%` }} />
     </View>
 )
 
@@ -17,10 +17,14 @@ interface OptionButtonProps {
     selected: boolean
     onPress: () => void
 }
+
+<View>
+
+</View>
 const OptionButton: React.FC<OptionButtonProps> = ({ icon, label, selected, onPress }) => (
     <TouchableOpacity
         className={
-            `flex-row items-center px-6 py-3 rounded-full mb-4 w-full border-2 ` +
+            `flex-row items-center px-[30px] py-[16px] rounded-[20px] mb-[32px] w-full h-[56px] border-2 ` +
             (selected
                 ? 'bg-primary-70 border-primary-70'
                 : 'bg-white border-primary-30')
@@ -69,14 +73,17 @@ export default function Onboarding1() {
     }
 
     return (
-        <View className="flex-1 bg-white pt-6">
+        <View className="flex-1 bg-white pt-[36px] gap-[20px]">
             <ProgressBar progress={0.25} />
-            <Text className="mt-6 text-xl font-primary-semibold text-primary-70 text-center">
-                Why do you run?
-            </Text>
-            <Text className="mt-2 text-sm font-primary text-grey-60 text-center mb-6">
-                Choose up to two
-            </Text>
+
+            <View className="mt-6 gap-[8px]">
+                <Text className="text-[24px] font-bold text-primary-dark text-center">
+                    Why do you run?
+                </Text>
+                <Text className="text-[16px] font-normal text-[#1f1f1f] text-center mb-6">
+                    (Choose up to two)
+                </Text>
+            </View>
 
             <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
                 {options.map(opt => (
@@ -91,7 +98,7 @@ export default function Onboarding1() {
             </ScrollView>
 
             <TouchableOpacity
-                className="absolute bottom-10 left-6 right-6 bg-primary-70 py-4 rounded-full"
+                className="h-[56px] absolute bottom-10 left-6 right-6 bg-primary-70 py-4 rounded-[20px]"
                 onPress={handleNext}
                 disabled={selected.length === 0}
             >

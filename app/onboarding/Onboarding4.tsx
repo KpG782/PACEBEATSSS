@@ -52,10 +52,10 @@ export default function Onboarding1() {
     const [selected, setSelected] = useState<string[]>([])
 
     const options = [
-        { id: 'starting', icon: '🟢', label: 'Just starting' },
-        { id: 'occasionally', icon: '🟡', label: 'Run occasionally' },
-        { id: 'weekly', icon: '🔵', label: 'I run weekly' },
-        { id: 'regularly', icon: '🔴', label: 'I run regularly / train often' },
+        { id: 'starting', icon: '🟢', label: 'Ag bagtit ka' },
+        { id: 'occasionally', icon: '🟡', label: 'Agsalsal ta' },
+        { id: 'weekly', icon: '🔵', label: 'Chupaen nak' },
+        { id: 'regularly', icon: '🔴', label: 'Yot ni inam' },
     ]
 
     const toggle = (id: string) => {
@@ -72,11 +72,11 @@ export default function Onboarding1() {
 
     return (
         <View className="flex-1 bg-white pt-[36px] gap-[48px]">
-            <ProgressBar progress={0.5} />
+            <ProgressBar progress={1} />
 
             <View className="gap-[8px]">
                 <Text className="text-[24px] font-bold text-primary-dark text-center">
-                    How often do you run?
+                    Ukinam?
                 </Text>
             </View>
 
